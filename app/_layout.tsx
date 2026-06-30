@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Slot } from 'expo-router';
 import { View, ActivityIndicator } from 'react-native';
 import { useFonts } from 'expo-font';
@@ -12,6 +12,7 @@ import {
   HankenGrotesk_600SemiBold,
 } from '@expo-google-fonts/hanken-grotesk';
 import { useAuthStore } from '../lib/authStore';
+import { ThemeProvider } from '../lib/ThemeContext';
 
 export default function RootLayout() {
   const initialize = useAuthStore((state) => state.initialize);
@@ -37,5 +38,9 @@ export default function RootLayout() {
     );
   }
 
-  return <Slot />;
+  return (
+    <ThemeProvider>
+      <Slot />
+    </ThemeProvider>
+  );
 }
