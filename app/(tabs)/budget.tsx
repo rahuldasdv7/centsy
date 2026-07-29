@@ -28,6 +28,7 @@ export default function Budget() {
         .from('transactions')
         .select('*')
         .eq('user_id', user.id)
+        .eq('is_split_parent', false) // Enforces transaction invariant to prevent double-counting
         .gte('transaction_date', monthStartISO)
         .order('transaction_date', { ascending: false }),
     ]);
